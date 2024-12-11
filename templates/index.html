@@ -3,15 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do App</title>
+    <title>Flask To-Do App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table th, table td {
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #0056b3;
+            color: white;
+        }
+        table td {
+            vertical-align: middle;
+        }
+        .priority-high {
+            color: #e63946;
+            font-weight: bold;
+        }
+        .priority-medium {
+            color: #f4a261;
+            font-weight: bold;
+        }
+        .priority-low {
+            color: #2a9d8f;
+            font-weight: bold;
+        }
+        a, button {
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+            background-color: #0056b3;
+            border-radius: 4px;
+            margin: 2px;
+        }
+        a:hover, button:hover {
+            background-color: #003d7e;
+        }
+        form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        form input, form select, form button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        form button {
+            background-color: #0056b3;
+            color: white;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #003d7e;
+        }
+        .logout {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #e63946;
+            font-weight: bold;
+        }
+        .logout:hover {
+            color: #a8322d;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome, {{ current_user.username }}</h1>
+        <h1>Welcome, {{ current_user.username }}!</h1>
+        <h2>Your To-Do List</h2>
 
-        <form action="{{ url_for('add_task') }}" method="post">
-            <input type="text" name="title" placeholder="Task Title" required>
+        <!-- Task List -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Priority</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.title }}</td>
+                    <td class="priority-{{ task.priority.lower() }}">{{ task.priority.capitalize() }}</td> <!-- Highlight Priority -->
+                    <td>{{ task.due_date or "No Due Date" }}</td>
+                    <td>{{ "Complete" if task.complete else "Incomplete" }}</td>
+                    <td>
+                        <a href="{{ url_for('toggle_task', task_id=task.id) }}">Toggle</a>
+                        <a href="{{ url_for('delete_task', task_id=task.id) }}" onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Add Task Form -->
+        <form method="POST" action="{{ url_for('add_task') }}">
+            <input type="text" name="title" placeholder="Task title" required>
             <select name="priority">
                 <option value="high">High</option>
                 <option value="medium" selected>Medium</option>
@@ -21,22 +142,7 @@
             <button type="submit">Add Task</button>
         </form>
 
-        <h2>Your Tasks</h2>
-        {% for task in tasks %}
-        <div class="task {% if task.complete %}complete{% endif %}">
-            <span>{{ task.title }} - Due: {{ task.due_date }}</span>
-            <div class="actions">
-                <a href="{{ url_for('toggle_task', task_id=task.id) }}">
-                    {{ "Mark as Complete" if not task.complete else "Undo Complete" }}
-                </a>
-                <a href="{{ url_for('delete_task', task_id=task.id) }}">Delete</a>
-            </div>
-        </div>
-        {% endfor %}
-
-        <form action="{{ url_for('logout') }}" method="post">
-            <button class="logout" type="submit">Logout</button>
-        </form>
+        <a class="logout" href="{{ url_for('logout') }}">Logout</a>
     </div>
 </body>
 </html>

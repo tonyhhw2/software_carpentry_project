@@ -76,15 +76,6 @@ This is a simple yet robust **To-Do List Application** built using **Flask**. It
 
 ---
 
-## Screenshots
-
-### Login Page
-![Login Page](https://via.placeholder.com/800x400?text=Login+Page)
-
-### Task List
-![Task List](https://via.placeholder.com/800x400?text=Task+List)
-
----
 
 ## Future Enhancements
 

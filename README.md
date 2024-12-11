@@ -54,7 +54,18 @@ This is a simple yet robust **To-Do List Application** built using **Flask**. It
 
 ## File Structure
 
-flask-todo-app/ ├── static/ │ └── styles.css # Custom CSS for styling ├── templates/ │ ├── index.html # Main page for tasks │ ├── login.html # Login page │ ├── register.html # Registration page ├── app.py # Main application file ├── requirements.txt # Python dependencies ├── README.md # Project documentation └── to_do.db # SQLite database (auto-generated)
+flask-todo-app/
+├── static/
+│   └── styles.css       # Custom CSS for styling
+├── templates/
+│   ├── index.html       # Main page for tasks
+│   ├── login.html       # Login page
+│   ├── register.html    # Registration page
+├── app.py               # Main application file
+├── requirements.txt     # Python dependencies
+├── README.md            # Project documentation
+└── to_do.db             # SQLite database (auto-generated)
+
 
 
 ---

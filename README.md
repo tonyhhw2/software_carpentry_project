@@ -20,7 +20,7 @@ This is a simple yet robust **To-Do List Application** built using **Flask**. It
 
 1. Clone this repository:
     ```bash
-    git clone https://github.com/your-username/flask-todo-app.git
+    git clone https://github.com/tonyhhw2/flask-todo-app.git
     cd flask-todo-app
     ```
 

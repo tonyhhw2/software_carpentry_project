@@ -1,101 +1,105 @@
-# To-Do App
+# Flask To-Do App with User Authentication
 
-This To-Do App is a simple and intuitive web application for managing daily tasks. It allows users to organize tasks by priority, set due dates, and customize the app's appearance through color themes.
-
-## Features
-
-1. **Task Management:**
-   - Add new tasks with a title, priority (High, Medium, Low), and optional due date.
-   - Mark tasks as complete or incomplete.
-   - Delete tasks.
-
-2. **Priority Levels:**
-   - Tasks can be categorized as High, Medium, or Low priority.
-   - Tasks are displayed in order of priority and due date.
-
-3. **Due Dates:**
-   - Users can specify due dates for their tasks.
-   - Tasks are sorted by priority and due date.
-
-## Technologies Used
-
-- **Backend:** Flask (Python)
-- **Frontend:** HTML, CSS, Jinja2 templates
-- **Database:** SQLite (via SQLAlchemy)
-
-## Prerequisites
-
-- Python 3.x installed on your system
-- pip package manager
-
-## Installation and Setup
-
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/your-repo/to-do-app.git
-   cd to-do-app
-   ```
-
-2. **Set Up a Virtual Environment:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install Dependencies:**
-   ```bash
-   pip install flask flask-sqlalchemy
-   ```
-
-4. **Run the Application:**
-   ```bash
-   python app.py
-   ```
-
-5. **Access the App:**
-   Open your browser and navigate to [http://127.0.0.1:5000](http://127.0.0.1:5000).
-
-## Usage
-
-1. **Adding a Task:**
-   - Fill out the task title, select a priority, and optionally set a due date.
-   - Click "Add Task" to save the task.
-
-2. **Marking a Task as Complete/Incomplete:**
-   - Click on "Complete" or "Undo" to toggle the task's completion status.
-
-3. **Deleting a Task:**
-   - Click "Delete" to remove the task.
-
-4. **Customizing Colors:**
-   - Use the theme form to set background and text colors.
-   - Click "Update Theme" to apply changes.
-
-## Folder Structure
-
-```
-.
-├── app.py          # Main application file
-├── templates/
-│   ├── index.html  # Frontend HTML template
-├── static/
-│   ├── style.css   # Custom styles (optional)
-├── to_do.db        # SQLite database file (auto-generated)
-└── README.md       # This readme file
-```
-
-## Future Improvements
-
-- User authentication for private task lists.
-- Task categorization by projects or tags.
-- Notifications for upcoming due dates.
-- Drag-and-drop task reordering.
-
-## License
-
-This project is licensed under the MIT License.
+This is a simple yet robust **To-Do List Application** built using **Flask**. It supports user authentication and personalized task management. Each user has their own private task list with features like task prioritization, due dates, and completion toggles.
 
 ---
 
-Enjoy staying organized with your new To-Do App!
+## Features
 
+- **User Authentication**: Secure registration and login system using hashed passwords.
+- **Task Management**:
+  - Add, edit, and delete tasks.
+  - Set task priority levels: High, Medium, and Low.
+  - Add a due date for tasks.
+  - Mark tasks as complete or incomplete.
+- **Responsive and Clean Design**: Styled with CSS for a professional appearance.
+
+---
+
+## Installation
+
+1. Clone this repository:
+    ```bash
+    git clone https://github.com/your-username/flask-todo-app.git
+    cd flask-todo-app
+    ```
+
+2. Create and activate a virtual environment:
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
+
+3. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Set up the database:
+    ```bash
+    flask db upgrade
+    ```
+
+5. Run the application:
+    ```bash
+    flask run
+    ```
+
+6. Open your browser and go to:
+    ```
+    http://127.0.0.1:5000
+    ```
+
+---
+
+## File Structure
+
+flask-todo-app/ ├── static/ │ └── styles.css # Custom CSS for styling ├── templates/ │ ├── index.html # Main page for tasks │ ├── login.html # Login page │ ├── register.html # Registration page ├── app.py # Main application file ├── requirements.txt # Python dependencies ├── README.md # Project documentation └── to_do.db # SQLite database (auto-generated)
+
+
+---
+
+## Usage
+
+### User Authentication
+- **Register**: Create a new account with a unique username and password.
+- **Login**: Access your private to-do list after logging in.
+- **Logout**: Log out securely from the app.
+
+### Task Management
+- **Add a Task**: Input the task title, select a priority (High, Medium, Low), and optionally set a due date.
+- **Mark as Complete**: Toggle task completion.
+- **Delete a Task**: Remove unwanted tasks.
+
+---
+
+## Technologies Used
+
+- **Backend**: Flask, Flask-SQLAlchemy, Flask-Login
+- **Frontend**: HTML, CSS
+- **Database**: SQLite
+- **Authentication**: Password hashing with `werkzeug.security`
+
+---
+
+## Screenshots
+
+### Login Page
+![Login Page](https://via.placeholder.com/800x400?text=Login+Page)
+
+### Task List
+![Task List](https://via.placeholder.com/800x400?text=Task+List)
+
+---
+
+## Future Enhancements
+
+- Add task editing functionality.
+- Implement reminders and notifications for due dates.
+- Extend UI responsiveness for better mobile compatibility.
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
